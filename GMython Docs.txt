@@ -1,0 +1,71 @@
+[ COMO UTLIZAR LA LIBRERIA: ]
+-----------------------------------------------------------------------------------------------------------------------------------------------
+| 1- Para usar GMython lo primero que se debe llamar a la función: << PYTHON_START(); >> en el evento create.								  |
+|																																			  |
+| 2- Para llamar a una libreria de python se debe de usar la función: << import( lib ); >> dentro de una variable.							  |
+|																																			  |
+| 3a- Para utilizar una función de la libreria se debe de llamar a la función: << python_lib_function( lib, func ); >> dentro de una variable.|
+|																																			  |
+| 3b-Para utilizar funcionalidad nativa de python (ya sea una simple suma o alguna función) 												  |
+| 	 se debe de llamar a la función: << python_function( func ); >>																			  |	
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+[ NOMENCLATURA RECOMENDADA: Nombre de variables ]
+-----------------------------------------------------------------------------------------------------------------------------------------------
+| py_ <= El inicio de cualquier variable con relación a la DLL.																				  |
+|																																			  |
+| pylib_ + nombre_de_la_libreria <= Para las variables que contengan a las librerias.													      |
+|																																			  |
+| py_ + nombre_de_la_libreria + función_de_la_librería <= Para las variables que contengan el valor de retorno 								  |
+| de una función de alguna librería.																										  |
+|																																			  |
+| pyv_ + nombre_de_la_funcionalidad <= Para las variables que contengan el valor de retorno de las funcionalidades nativas de Python.		  |
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+[ DESCRIPCIÓN DE LAS FUNCIONES: PYTHON ]
+---------------------------------------------------------------------------------------------------------|
+| PYTHON_START();																						 |
+|   Utilidad: Su función es iniciar la llamada con la DLL. 												 |
+|   [SIN ARGUMENTOS]																					 |
+| 	RETORNA: N/A																						 |
+| 	EJEMPLO: PYTHON_START(); en el Event Create															 |
+---------------------------------------------------------------------------------------------------------|
+| import( lib );																						 |	
+| 	Utilidad: Retorna el id de la librería.																 |
+|   [lib: Nombre de la librería]																		 |		
+|   RETORNA: STRING																						 |
+| 	EJEMPLO: pylib_math = import( "math" ); 															 |
+---------------------------------------------------------------------------------------------------------|
+| python_lib_function( lib, func );																		 |			
+|   Utilidad: Ejecuta la función a llamar y retorna el valor del resultado de la misma. 				 |		
+|   [lib: Id de la librería| func: Función de la librería a llamar conjunto a sus respectivos parámatros]|
+| 	RETORNA: STRING o REAL																				 |
+| 	EJEMPLO: py_math_cos = python_lib_function( pylib_math, "cos(5)" );									 |
+---------------------------------------------------------------------------------------------------------|
+| python_function( func )();																			 |
+|   Utilidad: Ejecuta la funcionalidad de python a llamar y retorna el valor del resultado de la misma.  |
+|   [func: Funcionalidad nativa de python, si es una función debe llevar sus respectivos parámatros]	 |
+| 	RETORNA: STRING o REAL																				 |
+| 	EJEMPLO: py_math_cos = python_function( "1+1" );							     		             |
+---------------------------------------------------------------------------------------------------------|
+
+
+
+[ DESCRIPCIÓN DE LAS FUNCIONES: FUNCIONES EXTRA ]
+---------------------------------------------------------------------------------------------------------|
+| ter( condition, consequence, alternative );															 |
+|   Utilidad: se asemeja al operador ternario  			 												 |
+|   [condition: Condición a cumplir, consequence: Si la condición se sumple,  							 |
+|    alternative: sino se cumple la condición]															 |
+| 	RETORNA: consequence o alternative																	 |
+| 	EJEMPLO: var = ter(1 < 2, 1, 0);							     		                             |
+---------------------------------------------------------------------------------------------------------|
+| print( text );																						 |	
+| 	Utilidad: Imprime un mensaje en la consola de Game Maker.											 |
+|   [text: Lo que se requiera imprimir]																	 |		
+|   RETORNA: N/A																						 |
+| 	EJEMPLO: print( "Hello World" );							     		                                 |
+---------------------------------------------------------------------------------------------------------|
